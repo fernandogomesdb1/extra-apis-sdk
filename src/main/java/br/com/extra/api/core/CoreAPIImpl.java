@@ -122,13 +122,10 @@ public abstract class CoreAPIImpl<T extends Pojos> {
 	private ClientFilter getFilter() {
 		return new ClientFilter() {
 			@Override
-			public ClientResponse handle(final ClientRequest clientRequest)
-					throws ClientHandlerException {
-				// Criação do mapa para inclusão de parâmetros do header
-				final MultivaluedMap<String, Object> headers = clientRequest
-						.getHeaders();
-				headers.add("nova-auth-token", authToken);
-				headers.add("nova-app-token", appToken);
+			public ClientResponse handle(final ClientRequest clientRequest) throws ClientHandlerException {
+				final MultivaluedMap<String, Object> headers = clientRequest.getHeaders();
+				headers.add(getHost().isV1() ? "nova-auth-token" : "access_token", authToken);
+				headers.add(getHost().isV1() ? "nova-app-token" : "client_id", appToken);
 				headers.remove("Host");
 				return getNext().handle(clientRequest);
 			}
@@ -152,8 +149,6 @@ public abstract class CoreAPIImpl<T extends Pojos> {
 	 * 
 	 * @param response
 	 *            Resposta da requisição.
-	 * @param message
-	 *            Mensagem que será retornada na exceção.
 	 * @throws ServiceException
 	 *             Exceção que deverá ser lançada.
 	 */
@@ -247,7 +242,7 @@ public abstract class CoreAPIImpl<T extends Pojos> {
 	 */
 	protected void validateSandboxRequest()
 			throws ServiceInfrastructureException {
-		if (getHost() != Hosts.SANDBOX && getHost() != Hosts.SHLG) {
+		if (!getHost().isSandbox()) {
 			throw new ServiceInfrastructureException(
 					403,
 					"You are not allowed to perform this operation in Production Environment. POST /orders is only allowed in Sandbox.");
