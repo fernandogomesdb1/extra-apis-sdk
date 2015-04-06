@@ -6,8 +6,7 @@ import br.com.extra.api.core.CoreAPIImpl;
 import br.com.extra.api.core.Hosts;
 import br.com.extra.api.core.exception.ServiceDataManipulationException;
 import br.com.extra.api.core.exception.ServiceException;
-import br.com.extra.api.pojo.v2.orders.Item;
-import br.com.extra.api.pojo.v2.orders.Order;
+import br.com.extra.api.pojo.v2.orders.*;
 import br.com.extra.api.utils.Utils;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -124,7 +123,7 @@ public class Orders extends CoreAPIImpl<Order> {
      */
     public List<Order> getNewOrders(Integer offset, Integer limit, String purchasedAt, String customerName, String customerDocumentNumber) throws ServiceException {
         setResource("/orders/status/new");
-        return getListOfOrders(String.valueOf(offset), String.valueOf(limit), purchasedAt, customerName, customerDocumentNumber);
+        return getListOfOrders(String.valueOf(offset), String.valueOf(limit), "purchasedAt", purchasedAt, customerName, customerDocumentNumber);
     }
 
     /**
@@ -147,7 +146,7 @@ public class Orders extends CoreAPIImpl<Order> {
      */
     public List<Order> getApprovedOrders(String offset, Integer limit, String purchasedAt, String customerName, String customerDocumentNumber) throws ServiceException {
         setResource("/orders/status/approved");
-        return getListOfOrders(offset, String.valueOf(limit), purchasedAt, customerName, customerDocumentNumber);
+        return getListOfOrders(offset, String.valueOf(limit), "purchasedAt", purchasedAt, customerName, customerDocumentNumber);
     }
 
     /**
@@ -169,57 +168,214 @@ public class Orders extends CoreAPIImpl<Order> {
      * @throws ServiceException
      */
     public List<Order> getCanceledOrders(String offset, Integer limit, String canceledAt, String customerName, String customerDocumentNumber) throws ServiceException {
-        setResource("/orders/status/canceled/");
-        return getListOfOrders(offset, String.valueOf(limit), canceledAt, customerName, customerDocumentNumber);
+        setResource("/orders/status/canceled");
+        return getListOfOrders(offset, String.valueOf(limit), "canceledAt", canceledAt, customerName, customerDocumentNumber);
     }
 
-    // GET /orders/status/sent
-    public List<Order> getSentOrders(String offset, String limit) throws ServiceException {
-        return null;
+    /**
+     * Recupera uma lista de pedidos Enviados que estão relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
+     *
+     * GET /orders/status/sent
+     *
+     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
+     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     *                   sentAt={data inicial},{data final}
+     *                   sentAt={data inicial},*
+     *                   sentAt=*,{data final}
+     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     * @param customerName Nome do Cliente.
+     * @param customerDocumentNumber Documento do Cliente.
+     * @return
+     * @throws ServiceException
+     */
+    public List<Order> getSentOrders(String offset, String limit, String sentAt, String customerName, String customerDocumentNumber) throws ServiceException {
+        setResource("/orders/status/sent");
+        return getListOfOrders(offset, String.valueOf(limit), "sentAt", sentAt, customerName, customerDocumentNumber);
     }
 
-    // GET /orders/status/partiallySent
-    public List<Order> getSentPartiallyOrders(String offset, String limit) throws ServiceException {
-        return null;
+    /**
+     * Retorna uma lista de pedidos Parcialmente Enviados que estão relacionados com o token do lojista informado.
+     *
+     * GET /orders/status/partiallySent
+     *
+     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
+     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     *                   sentAt={data inicial},{data final}
+     *                   sentAt={data inicial},*
+     *                   sentAt=*,{data final}
+     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     * @param customerName Nome do Cliente.
+     * @param customerDocumentNumber Documento do Cliente.
+     * @return
+     * @throws ServiceException
+     */
+    public List<Order> getSentPartiallyOrders(String offset, String limit, String sentAt, String customerName, String customerDocumentNumber) throws ServiceException {
+        setResource("/orders/status/partiallySent");
+        return getListOfOrders(offset, String.valueOf(limit), "sentAt", sentAt, customerName, customerDocumentNumber);
     }
 
-    // GET /orders/status/partiallyDelivered
-    public List<Order> getPartiallyDeliveredOrders(String offset, String limit) throws ServiceException {
-        return null;
+    /**
+     * Retorna uma lista de pedidos Parcialmente Entregues que estão relacionados com o token do lojista informado.
+     *
+     * GET /orders/status/partiallyDelivered
+     *
+     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
+     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     *                   sentAt={data inicial},{data final}
+     *                   sentAt={data inicial},*
+     *                   sentAt=*,{data final}
+     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     * @param customerName Nome do Cliente.
+     * @param customerDocumentNumber Documento do Cliente.
+     * @return
+     * @throws ServiceException
+     */
+    public List<Order> getPartiallyDeliveredOrders(String offset, String limit, String sentAt, String customerName, String customerDocumentNumber) throws ServiceException {
+        setResource("/orders/status/partiallyDelivered");
+        return getListOfOrders(offset, String.valueOf(limit), "sentAt", sentAt, customerName, customerDocumentNumber);
     }
 
-    // GET /orders/status/delivered
-    public List<Order> getDeliveredOrders(String offset, String limit) throws ServiceException {
-        return null;
+    /**
+     * Recupera uma lista de pedidos Entregues que estão relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
+     *
+     * GET /orders/status/delivered
+     *
+     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
+     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param deliveredAt Data de entrega. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     *                       deliveredAt={data inicial},{data final}
+     *                       deliveredAt={data inicial},*
+     *                       deliveredAt=*,{data final}
+     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     * @param customerName Nome do Cliente.
+     * @param customerDocumentNumber Documento do Cliente.
+     * @return
+     * @throws ServiceException
+     */
+    public List<Order> getDeliveredOrders(String offset, String limit, String deliveredAt, String customerName, String customerDocumentNumber) throws ServiceException {
+        setResource("/orders/status/delivered");
+        return getListOfOrders(offset, String.valueOf(limit), "deliveredAt", deliveredAt, customerName, customerDocumentNumber);
     }
 
     // *****************************************************************************************************************
     // NOVOS
     // *****************************************************************************************************************
 
-    // POST /orders/{orderId}/trackings/sent
-    public Boolean requestShipmentTracking(String orderId, String reason) throws ServiceException {
-        return null;
+    /**
+     * Registra uma nova operação de tracking de Envio para os itens do pedido.
+     *
+     * POST /orders/{orderId}/trackings/sent
+     *
+     * @param orderId ID do pedido.
+     * @param body
+     * @return
+     * @throws ServiceException
+     */
+    public Boolean requestShipmentTracking(String orderId, TrackingUpdateSend body) throws ServiceException {
+        setResource("/orders/" + orderId + "/trackings/sent");
+
+        ClientResponse response = post(body);
+
+        if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
+            throw errorHandler(response);
+        }
+
+        return true;
     }
 
-    // POST /orders/{orderId}/trackings/delivered
-    public Boolean requestDeliveryTracking(String orderId, String reason) throws ServiceException {
-        return null;
+    /**
+     * Registra uma nova operação de tracking de Entrega para os itens do pedido.
+     *
+     * POST /orders/{orderId}/trackings/delivered
+     *
+     * @param orderId ID do pedido.
+     * @param body
+     * @return
+     * @throws ServiceException
+     */
+    public Boolean requestDeliveryTracking(String orderId, TrackingUpdateDelivery body) throws ServiceException {
+        setResource("/orders/" + orderId + "/trackings/delivered");
+
+        ClientResponse response = post(body);
+
+        if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
+            throw errorHandler(response);
+        }
+
+        return true;
     }
 
-    // POST /orders/{orderId}/trackings/cancel
-    public Boolean cancelOrderItem(String orderId, String reason) throws ServiceException {
-        return null;
+    /**
+     * Operação utilizada para confirmar o cancelamento de um item de um pedido que foi aberto pelo cliente (via protocolo) ou cancelamento acionado pelo lojista.
+     *
+     * POST /orders/{orderId}/trackings/cancel
+     *
+     * @param orderId
+     * @param body
+     * @return
+     * @throws ServiceException
+     */
+    public Boolean cancelOrderItem(String orderId, TrackingCancel body) throws ServiceException {
+        setResource("/orders/" + orderId + "/trackings/cancel");
+
+        ClientResponse response = post(body);
+
+        if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
+            throw errorHandler(response);
+        }
+
+        return true;
     }
 
-    // POST /orders/{orderId}/trackings/exchange
-    public Boolean exchangeOrderItem(String orderId, String reason) throws ServiceException {
-        return null;
+    /**
+     * Operação utilizada para confirmar a troca de um item de um pedido que foi aberto pelo cliente (via protocolo).
+     *
+     * POST /orders/{orderId}/trackings/exchange
+     *
+     * @param orderId
+     * @param body
+     * @return
+     * @throws ServiceException
+     */
+    public Boolean exchangeOrderItem(String orderId, TrackingUpdateDelivery body) throws ServiceException {
+        setResource("/orders/" + orderId + "/trackings/exchange");
+
+        ClientResponse response = post(body);
+
+        if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
+            throw errorHandler(response);
+        }
+
+        return true;
     }
 
-    // POST /orders/{orderId}/trackings/return
-    public Boolean returnOrderItem(String orderId, String reason) throws ServiceException {
-        return null;
+    /**
+     * Operação utilizada para confirmação de devolução (reembolso) de item do pedido através de protocolo aberto pelo cliente.
+     *
+     * POST /orders/{orderId}/trackings/return
+     *
+     * @param orderId
+     * @param body
+     * @return
+     * @throws ServiceException
+     */
+    public Boolean returnOrderItem(String orderId, TrackingUpdateDelivery body) throws ServiceException {
+        setResource("/orders/" + orderId + "/trackings/return");
+
+        ClientResponse response = post(body);
+
+        if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
+            throw errorHandler(response);
+        }
+
+        return true;
     }
 
     /**
@@ -227,21 +383,18 @@ public class Orders extends CoreAPIImpl<Order> {
      *
      * @param offset Parâmetro utilizado para limitar a quantidade de registros trazidos por página.
      * @param limit Parâmetro utilizado para limitar a quantidade de registros trazidos pela operação.
-     * @param purchasedAt Data de compra. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
-     *                       purchasedAt={data inicial},{data final}
-     *                       purchasedAt={data inicial},*
-     *                       purchasedAt=*,{data final}
-     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
+     * @param dateName Nome do parâmetro Data para filtrar.
+     * @param date Data para filtrar.
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return Lista de pedidos do lojista.
      * @throws ServiceException
      */
-    private List<Order> getListOfOrders(String offset, String limit, String purchasedAt, String customerName, String customerDocumentNumber) throws ServiceException {
+    private List<Order> getListOfOrders(String offset, String limit, String dateName, String date, String customerName, String customerDocumentNumber) throws ServiceException {
         MultivaluedMap<String, String> queryParameters = new MultivaluedMapImpl();
         queryParameters.add("_offset", offset);
         queryParameters.add("_limit", limit);
-        queryParameters.add("purchasedAt", purchasedAt);
+        queryParameters.add(dateName, date);
         queryParameters.add("customer.name", customerName);
         queryParameters.add("customer.documentNumber", customerDocumentNumber);
 
