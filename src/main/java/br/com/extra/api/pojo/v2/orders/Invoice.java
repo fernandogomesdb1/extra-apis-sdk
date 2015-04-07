@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Invoice implements Serializable {
 
-    private static final long serialVersionUID = 893851738922339125L;
+    private static final long serialVersionUID = -2385451447033343222L;
     private String cnpj;
     private String number;
     private String serie;
@@ -23,55 +23,27 @@ public class Invoice implements Serializable {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getSerie() {
         return serie;
     }
 
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-
     public Date getIssuedAt() {
         return issuedAt;
-    }
-
-    public void setIssuedAt(Date issuedAt) {
-        this.issuedAt = issuedAt;
     }
 
     public String getAccessKey() {
         return accessKey;
     }
 
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
-
     public String getLinkXML() {
         return linkXML;
     }
 
-    public void setLinkXML(String linkXML) {
-        this.linkXML = linkXML;
-    }
-
     public String getLinkDanfe() {
         return linkDanfe;
-    }
-
-    public void setLinkDanfe(String linkDanfe) {
-        this.linkDanfe = linkDanfe;
     }
 }

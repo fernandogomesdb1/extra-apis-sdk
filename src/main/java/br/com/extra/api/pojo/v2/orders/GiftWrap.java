@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  */
 public class GiftWrap implements Serializable {
 
-    private static final long serialVersionUID = -7557967868528529909L;
+    private static final long serialVersionUID = -1354633589075919422L;
     private Boolean available;
     private BigDecimal value;
     private Boolean messageSupport;
@@ -20,31 +20,15 @@ public class GiftWrap implements Serializable {
         return available;
     }
 
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
-
     public BigDecimal getValue() {
         return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
     }
 
     public Boolean isMessageSupport() {
         return messageSupport;
     }
 
-    public void setMessageSupport(Boolean messageSupport) {
-        this.messageSupport = messageSupport;
-    }
-
     public GiftCard getGiftCard() {
         return giftCard;
-    }
-
-    public void setGiftCard(GiftCard giftCard) {
-        this.giftCard = giftCard;
     }
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class ItemTracking implements Serializable {
 
-    private static final long serialVersionUID = 8064763065989614588L;
+    private static final long serialVersionUID = -4433733356146252942L;
     private String skuSellerId;
     private Integer quantity;
     private String href;
@@ -18,23 +18,11 @@ public class ItemTracking implements Serializable {
         return skuSellerId;
     }
 
-    public void setSkuSellerId(String skuSellerId) {
-        this.skuSellerId = skuSellerId;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public String getHref() {
         return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
     }
 }

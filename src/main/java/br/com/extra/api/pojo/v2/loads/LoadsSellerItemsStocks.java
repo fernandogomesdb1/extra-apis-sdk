@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class LoadsSellerItemsStocks implements Serializable {
 
-    private static final long serialVersionUID = 5263342229695903809L;
+    private static final long serialVersionUID = -1924649719737619410L;
     private String skuSellerId;
     private List<LoadsSellerItemsStocks> stocks;
 
@@ -16,15 +16,7 @@ public class LoadsSellerItemsStocks implements Serializable {
         return skuSellerId;
     }
 
-    public void setSkuSellerId(String skuSellerId) {
-        this.skuSellerId = skuSellerId;
-    }
-
     public List<LoadsSellerItemsStocks> getStocks() {
         return stocks;
-    }
-
-    public void setStocks(List<LoadsSellerItemsStocks> stocks) {
-        this.stocks = stocks;
     }
 }
