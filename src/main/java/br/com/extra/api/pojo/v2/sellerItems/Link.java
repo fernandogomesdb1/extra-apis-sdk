@@ -9,15 +9,35 @@ import java.io.Serializable;
  */
 public class Link implements Serializable {
 
-    private static final long serialVersionUID = -7676842500945245297L;
+    private static final long serialVersionUID = 8852615836241333619L;
     private String id;
     private String href;
 
+    /**
+     * ID do recurso.
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * {@link Link#getId()}
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Link para acesso ao recurso.
+     */
     public String getHref() {
         return href;
+    }
+
+    /**
+     * {@link Link#getHref()}
+     */
+    public void setHref(String href) {
+        this.href = href;
     }
 }

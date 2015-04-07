@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class StatusLoadsSellerItemsStatus implements Serializable {
 
-    private static final long serialVersionUID = 5895247880592079763L;
+    private static final long serialVersionUID = 2988826688887073797L;
     private Boolean active;
     private String site;
 
@@ -15,7 +15,15 @@ public class StatusLoadsSellerItemsStatus implements Serializable {
         return active;
     }
 
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public String getSite() {
         return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 }

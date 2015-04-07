@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ProductsStatus implements Serializable {
 
-    private static final long serialVersionUID = 5996692510969221445L;
+    private static final long serialVersionUID = -4329778734473179513L;
     private List<Sku> skus;
     private Object metadata;
 
@@ -16,7 +16,15 @@ public class ProductsStatus implements Serializable {
         return skus;
     }
 
+    public void setSkus(List<Sku> skus) {
+        this.skus = skus;
+    }
+
     public Object getMetadata() {
         return metadata;
+    }
+
+    public void setMetadata(Object metadata) {
+        this.metadata = metadata;
     }
 }

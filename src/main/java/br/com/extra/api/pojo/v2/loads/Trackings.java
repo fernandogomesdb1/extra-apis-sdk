@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Trackings implements Serializable {
 
-    private static final long serialVersionUID = -1596471314634521001L;
+    private static final long serialVersionUID = 7832889795025352707L;
     private OrderId order;
     List<ItemsTrackings> items;
     private String description;
@@ -25,43 +25,83 @@ public class Trackings implements Serializable {
     private Invoice invoice;
 
     public OrderId getOrder() {
-
         return order;
+    }
+
+    public void setOrder(OrderId order) {
+        this.order = order;
     }
 
     public List<ItemsTrackings> getItems() {
         return items;
     }
 
+    public void setItems(List<ItemsTrackings> items) {
+        this.items = items;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getOccuredAt() {
         return occuredAt;
     }
 
+    public void setOccuredAt(Date occuredAt) {
+        this.occuredAt = occuredAt;
+    }
+
     public String getUrl() {
         return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getNumber() {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getSellerDeliveryId() {
         return sellerDeliveryId;
+    }
+
+    public void setSellerDeliveryId(String sellerDeliveryId) {
+        this.sellerDeliveryId = sellerDeliveryId;
     }
 
     public String getCte() {
         return cte;
     }
 
+    public void setCte(String cte) {
+        this.cte = cte;
+    }
+
     public Carrier getCarrier() {
         return carrier;
+    }
+
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
     }
 
     public Invoice getInvoice() {
         return invoice;
     }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
 }

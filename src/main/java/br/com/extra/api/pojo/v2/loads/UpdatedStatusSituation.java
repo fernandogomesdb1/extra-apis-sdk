@@ -8,15 +8,23 @@ import java.util.List;
  */
 public class UpdatedStatusSituation implements Serializable {
 
-    private static final long serialVersionUID = 8201799939025235211L;
+    private static final long serialVersionUID = 3246839777321697186L;
     List<SkuSellerItemStatus> skus;
     Object metadata;
+
+    public List<SkuSellerItemStatus> getSkus() {
+        return skus;
+    }
+
+    public void setSkus(List<SkuSellerItemStatus> skus) {
+        this.skus = skus;
+    }
 
     public Object getMetadata() {
         return metadata;
     }
 
-    public List<SkuSellerItemStatus> getSkus() {
-        return skus;
+    public void setMetadata(Object metadata) {
+        this.metadata = metadata;
     }
 }

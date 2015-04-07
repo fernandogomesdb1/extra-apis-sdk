@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ItemsTrackingCancel implements Serializable {
 
-    private static final long serialVersionUID = 1630863631654764962L;
+    private static final long serialVersionUID = 1434737015287026768L;
     private String skuSellerId;
     private String description;
 
@@ -12,7 +12,15 @@ public class ItemsTrackingCancel implements Serializable {
         return skuSellerId;
     }
 
+    public void setSkuSellerId(String skuSellerId) {
+        this.skuSellerId = skuSellerId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

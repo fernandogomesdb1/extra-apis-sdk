@@ -9,20 +9,50 @@ import java.io.Serializable;
  */
 public class Image implements Serializable {
 
-    private static final long serialVersionUID = 1747499114752056423L;
+    private static final long serialVersionUID = 1091241665598536554L;
     private String type;
     private Boolean main;
     private String url;
 
+    /**
+     * Formato da imagem.
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * {@link Image#getType()}
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Flag que indica se a imagem é a principal.
+     */
     public Boolean isMain() {
         return main;
     }
 
+    /**
+     * {@link Image#isMain()}
+     */
+    public void setMain(Boolean main) {
+        this.main = main;
+    }
+
+    /**
+     * URL da imagem do produto.
+     */
     public String getUrl() {
         return url;
+    }
+
+    /**
+     * {@link Image#getUrl()}
+     */
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Freight implements Serializable {
 
-    private static final long serialVersionUID = -7933408893331363198L;
+    private static final long serialVersionUID = -178398835901779098L;
     private BigDecimal actualAmount;
     private BigDecimal chargedAmount;
     private String type;
@@ -22,19 +22,39 @@ public class Freight implements Serializable {
         return actualAmount;
     }
 
+    public void setActualAmount(BigDecimal actualAmount) {
+        this.actualAmount = actualAmount;
+    }
+
     public BigDecimal getChargedAmount() {
         return chargedAmount;
+    }
+
+    public void setChargedAmount(BigDecimal chargedAmount) {
+        this.chargedAmount = chargedAmount;
     }
 
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Date getScheduledAt() {
         return scheduledAt;
     }
 
+    public void setScheduledAt(Date scheduledAt) {
+        this.scheduledAt = scheduledAt;
+    }
+
     public String getScheduledPeriod() {
         return scheduledPeriod;
+    }
+
+    public void setScheduledPeriod(String scheduledPeriod) {
+        this.scheduledPeriod = scheduledPeriod;
     }
 }

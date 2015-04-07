@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Stock implements Serializable {
 
-    private static final long serialVersionUID = -2532346537354902279L;
+    private static final long serialVersionUID = 6336131872031912099L;
     private Integer quantity;
     private Integer crossDockingTime;
 
@@ -17,7 +17,15 @@ public class Stock implements Serializable {
         return quantity;
     }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Integer getCrossDockingTime() {
         return crossDockingTime;
+    }
+
+    public void setCrossDockingTime(Integer crossDockingTime) {
+        this.crossDockingTime = crossDockingTime;
     }
 }
