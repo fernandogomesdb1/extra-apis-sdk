@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Date;
 public class ItemFreight implements Serializable {
 
     private static final long serialVersionUID = 700040245404662201L;
-    private Double actualAmount;
-    private Double chargedAmount;
+    private BigDecimal actualAmount;
+    private BigDecimal chargedAmount;
     private Integer transitTime;
     private Integer crossDockingTime;
     private String additionalInfo;
@@ -20,19 +21,19 @@ public class ItemFreight implements Serializable {
     private Date scheduledAt;
     private String scheduledPeriod;
 
-    public Double getActualAmount() {
+    public BigDecimal getActualAmount() {
         return actualAmount;
     }
 
-    public void setActualAmount(Double actualAmount) {
+    public void setActualAmount(BigDecimal actualAmount) {
         this.actualAmount = actualAmount;
     }
 
-    public Double getChargedAmount() {
+    public BigDecimal getChargedAmount() {
         return chargedAmount;
     }
 
-    public void setChargedAmount(Double chargedAmount) {
+    public void setChargedAmount(BigDecimal chargedAmount) {
         this.chargedAmount = chargedAmount;
     }
 

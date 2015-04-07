@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.sellerItems;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Informações de embrulho para presente.
@@ -11,7 +12,7 @@ public class GiftWrap implements Serializable {
 
     private static final long serialVersionUID = 4836912984239615880L;
     private Boolean available;
-    private Double value;
+    private BigDecimal value;
     private Boolean messageSupport;
 
     /**
@@ -31,14 +32,14 @@ public class GiftWrap implements Serializable {
     /**
      * Valor cobrado pelo embrulho.
      */
-    public Double getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
     /**
      * {@link GiftWrap#getValue()}
      */
-    public void setValue(Double value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 

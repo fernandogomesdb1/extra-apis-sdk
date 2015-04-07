@@ -15,21 +15,21 @@ public enum Hosts {
 	/**
 	 * Host do serviço em Ambiente de Sandbox na versão 1.
 	 */
-	SANDBOX_V1("https://sandbox.extra.com.br/api/v1"),
+	SANDBOX_V1("https://sandbox.cnova.com/api/v1"),
 	/**
 	 * Host do serviço em Ambiente de Produção na versão 1.
 	 */
-	PRODUCAO_V1("https://api.extra.com.br/api/v1"),
+	PRODUCAO_V1("https://api.cnova.com/api/v1"),
 
 	/**
 	 * Host do serviço em Ambiente de Sandbox na versão 2.
 	 */
-	SANDBOX_V2("https://sandbox.extra.com.br/api/v2"),
+	SANDBOX_V2("https://sandbox.cnova.com/api/v2"),
 
 	/**
 	 * Host do serviço em Ambiente de Produção na versão 2.
 	 */
-	PRODUCAO_V2("https://api.extra.com.br/api/v2");
+	PRODUCAO_V2("https://api.cnova.com/api/v2");
 
 	/**
 	 * Endereço do host.
