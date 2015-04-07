@@ -3,6 +3,7 @@ package br.com.extra.api.pojo.v2.sellerItems;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Informações de preço do produto para cada site.
@@ -12,14 +13,14 @@ import java.io.Serializable;
 public class Price implements Serializable {
 
     private static final long serialVersionUID = 3824305894838281505L;
-    private Double defaultPrice;
-    private Double offer;
+    private BigDecimal defaultPrice;
+    private BigDecimal offer;
     private String site;
 
     /**
      * Preço "de" do produto no Marketplace.
      */
-    public Double getDefaultPrice() {
+    public BigDecimal getDefaultPrice() {
         return defaultPrice;
     }
 
@@ -27,21 +28,21 @@ public class Price implements Serializable {
      * {@link Price#getDefaultPrice()}
      */
     @JsonProperty("default")
-    public void setDefaultPrice(Double defaultPrice) {
+    public void setDefaultPrice(BigDecimal defaultPrice) {
         this.defaultPrice = defaultPrice;
     }
 
     /**
      * Preço real de venda. Preço "por" do produto no Marketplace.
      */
-    public Double getOffer() {
+    public BigDecimal getOffer() {
         return offer;
     }
 
     /**
      * {@link Price#getOffer()}
      */
-    public void setOffer(Double offer) {
+    public void setOffer(BigDecimal offer) {
         this.offer = offer;
     }
 

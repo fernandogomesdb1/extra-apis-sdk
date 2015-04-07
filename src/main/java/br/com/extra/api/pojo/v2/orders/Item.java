@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Item do pedido.
@@ -13,7 +14,7 @@ public class Item implements Serializable {
     private String id;
     private String skuSellerId;
     private String name;
-    private Double salePrice;
+    private BigDecimal salePrice;
     private Boolean sent;
     private ItemFreight freight;
     private GiftWrap giftWrap;
@@ -42,11 +43,11 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public Double getSalePrice() {
+    public BigDecimal getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(Double salePrice) {
+    public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
 

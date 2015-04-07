@@ -2,6 +2,7 @@ package br.com.extra.api.pojo.v2.orders;
 
 import br.com.extra.api.pojo.Pojos;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class Order extends Pojos {
     private Date approvedAt;
     private Date updatedAt;
     private String status;
-    private Double totalAmount;
-    private Double totalDiscountAmount;
+    private BigDecimal totalAmount;
+    private BigDecimal totalDiscountAmount;
     private Address billing;
     private Customer customer;
     private Freight freight;
@@ -85,19 +86,19 @@ public class Order extends Pojos {
         this.status = status;
     }
 
-    public Double getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Double totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public Double getTotalDiscountAmount() {
+    public BigDecimal getTotalDiscountAmount() {
         return totalDiscountAmount;
     }
 
-    public void setTotalDiscountAmount(Double totalDiscountAmount) {
+    public void setTotalDiscountAmount(BigDecimal totalDiscountAmount) {
         this.totalDiscountAmount = totalDiscountAmount;
     }
 

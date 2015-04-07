@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.loads;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Informações de preço do produto.
@@ -10,22 +11,22 @@ import java.io.Serializable;
 public class Price implements Serializable {
 
     private static final long serialVersionUID = 5469778496695456145L;
-    private Double defaultPrice;
-    private Double offer;
+    private BigDecimal defaultPrice;
+    private BigDecimal offer;
 
-    public Double getDefaultPrice() {
+    public BigDecimal getDefaultPrice() {
         return defaultPrice;
     }
 
-    public void setDefaultPrice(Double defaultPrice) {
+    public void setDefaultPrice(BigDecimal defaultPrice) {
         this.defaultPrice = defaultPrice;
     }
 
-    public Double getOffer() {
+    public BigDecimal getOffer() {
         return offer;
     }
 
-    public void setOffer(Double offer) {
+    public void setOffer(BigDecimal offer) {
         this.offer = offer;
     }
 }
