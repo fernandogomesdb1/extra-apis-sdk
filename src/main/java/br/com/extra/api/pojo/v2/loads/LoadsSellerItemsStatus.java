@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class LoadsSellerItemsStatus implements Serializable {
 
-    private static final long serialVersionUID = 990875315700106233L;
+    private static final long serialVersionUID = 4721936867604306535L;
     private String skuSellerId;
     private List<StatusLoadsSellerItemsStatus> status;
 
@@ -16,7 +16,15 @@ public class LoadsSellerItemsStatus implements Serializable {
         return skuSellerId;
     }
 
+    public void setSkuSellerId(String skuSellerId) {
+        this.skuSellerId = skuSellerId;
+    }
+
     public List<StatusLoadsSellerItemsStatus> getStatus() {
         return status;
+    }
+
+    public void setStatus(List<StatusLoadsSellerItemsStatus> status) {
+        this.status = status;
     }
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Telephone implements Serializable {
 
-    private static final long serialVersionUID = 8233226865536387215L;
+    private static final long serialVersionUID = -3418302493910143076L;
     private String number;
     private String type;
 
@@ -17,7 +17,15 @@ public class Telephone implements Serializable {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

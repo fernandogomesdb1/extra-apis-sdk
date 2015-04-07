@@ -7,10 +7,14 @@ import java.io.Serializable;
  */
 public class OrderId implements Serializable {
 
-    private static final long serialVersionUID = 1391783747233242452L;
+    private static final long serialVersionUID = -7632661505693826161L;
     private String id;
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

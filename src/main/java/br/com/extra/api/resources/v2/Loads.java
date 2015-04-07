@@ -6,7 +6,7 @@ import br.com.extra.api.core.CoreAPIImpl;
 import br.com.extra.api.core.Hosts;
 import br.com.extra.api.core.exception.ServiceDataManipulationException;
 import br.com.extra.api.core.exception.ServiceException;
-import br.com.extra.api.pojo.v2.loads.ProductLoad;
+import br.com.extra.api.pojo.v1.loads.ProductLoad;
 import br.com.extra.api.pojo.v2.loads.*;
 import br.com.extra.api.pojo.v2.loads.Product;
 import br.com.extra.api.utils.Utils;
@@ -76,7 +76,7 @@ public class Loads extends CoreAPIImpl<Product> {
     /**
      * GET /loads/products Operação utilizada para consultar o status dos produtos enviados
      */
-    public ProductsStatus getLoadedProductsStatus(String createdAt, String status, String offset, Integer limit) throws ServiceException {
+    public List<Product> getLoadedProductsStatus(String createdAt, String status, String offset, Integer limit) throws ServiceException {
         setResource("/loads/products");
         MultivaluedMap<String, String> queryParameters = new MultivaluedMapImpl();
         queryParameters.add("_offset", offset);
@@ -86,15 +86,18 @@ public class Loads extends CoreAPIImpl<Product> {
 
         ClientResponse response = super.setQueryParams(queryParameters).get();
 
+        List<Product> orders = new ArrayList<Product>();
         if (response.getStatus() == ClientResponse.Status.OK.getStatusCode()) {
             try {
-                return new ObjectMapper().readValue(response.getEntityInputStream(), ProductsStatus.class);
+                orders = getListFromResponse(response);
             } catch (IOException e) {
                 throw new ServiceDataManipulationException("Error handling response. ", e);
             }
         } else {
             throw errorHandler(response);
         }
+
+        return orders;
     }
 
     /**

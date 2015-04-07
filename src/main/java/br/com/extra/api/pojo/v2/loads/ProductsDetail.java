@@ -15,4 +15,8 @@ public class ProductsDetail extends Product {
     public List<Error> getErrors() {
         return errors;
     }
+
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
+    }
 }
