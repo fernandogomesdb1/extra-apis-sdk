@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class UpdatedSentTrackingSituation implements Serializable {
 
-    private static final long serialVersionUID = -3825565326944504810L;
+    private static final long serialVersionUID = 7263715913733337337L;
     private List<Trackings> trackings;
     private Object metadata;
 
@@ -16,15 +16,7 @@ public class UpdatedSentTrackingSituation implements Serializable {
         return trackings;
     }
 
-    public void setTrackings(List<Trackings> trackings) {
-        this.trackings = trackings;
-    }
-
     public Object getMetadata() {
         return metadata;
-    }
-
-    public void setMetadata(Object metadata) {
-        this.metadata = metadata;
     }
 }

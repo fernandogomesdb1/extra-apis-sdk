@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class GiftCard implements Serializable {
 
-    private static final long serialVersionUID = 8113581074568231809L;
+    private static final long serialVersionUID = 4033380625427577167L;
     private String from;
     private String to;
     private String message;
@@ -18,23 +18,11 @@ public class GiftCard implements Serializable {
         return from;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
     public String getTo() {
         return to;
     }
 
-    public void setTo(String to) {
-        this.to = to;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  */
 public class Price implements Serializable {
 
-    private static final long serialVersionUID = 5469778496695456145L;
+    private static final long serialVersionUID = -7132362331411130488L;
     private BigDecimal defaultPrice;
     private BigDecimal offer;
 
@@ -18,15 +18,7 @@ public class Price implements Serializable {
         return defaultPrice;
     }
 
-    public void setDefaultPrice(BigDecimal defaultPrice) {
-        this.defaultPrice = defaultPrice;
-    }
-
     public BigDecimal getOffer() {
         return offer;
-    }
-
-    public void setOffer(BigDecimal offer) {
-        this.offer = offer;
     }
 }
