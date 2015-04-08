@@ -6,9 +6,8 @@ import br.com.extra.api.core.CoreAPIImpl;
 import br.com.extra.api.core.Hosts;
 import br.com.extra.api.core.exception.ServiceDataManipulationException;
 import br.com.extra.api.core.exception.ServiceException;
-import br.com.extra.api.pojo.v2.loads.ProductLoad;
+import br.com.extra.api.pojo.MetadataItem;
 import br.com.extra.api.pojo.v2.loads.*;
-import br.com.extra.api.pojo.v2.loads.Product;
 import br.com.extra.api.utils.Utils;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -16,9 +15,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPOutputStream;
 
@@ -30,6 +27,8 @@ import java.util.zip.GZIPOutputStream;
  * Created by marcos.tanaka on 06/04/2015.
  */
 public class Loads extends CoreAPIImpl<Product> {
+
+    private static final int PAGE_SIZE = 100;
 
     public Loads(){
     }
@@ -104,8 +103,30 @@ public class Loads extends CoreAPIImpl<Product> {
         }
     }
 
+    /**
+    * Obtem todos os produtos com carregamento pendente, mesmo que ultrapasse o limite da paginação
+     */
     public ProductsStatus getPendingLoadedProducts() throws ServiceException {
-        return getLoadedProductsStatus(null, "PENDING", 0, 100);
+        ProductsStatus productsStatus = getLoadedProductsStatus(null, "PENDING", 0, PAGE_SIZE);
+
+        int totalRows = productsStatus.getSkus().size();
+        for (MetadataItem metadataItem : productsStatus.getMetadata()) {
+            if ("totalRows".equals(metadataItem.getKey())) {
+                totalRows = Integer.valueOf(metadataItem.getValue());
+            }
+        }
+
+        int additionalIteractions = (totalRows - 1) / PAGE_SIZE;
+        for (int i = 1; i <= additionalIteractions; i++) {
+            ProductsStatus additionalProductsStatus = getLoadedProductsStatus(null, "PENDING", ((PAGE_SIZE * i) - 1), PAGE_SIZE);
+            productsStatus.getSkus().addAll(additionalProductsStatus.getSkus());
+        }
+
+        if (totalRows != productsStatus.getSkus().size()) {
+            throw new ServiceDataManipulationException("Nao foi possivel obter todos os produtos com carregamento pendente");
+        }
+
+        return productsStatus;
     }
 
     /**
