@@ -24,19 +24,22 @@ import java.util.Map;
 import static br.com.extra.api.utils.Utils.isEmpty;
 
 /**
- * Implementação do Serviço Restful /sellerItems na versão 2.
+ * Implementaï¿½ï¿½o do Serviï¿½o Restful /sellerItems na versï¿½o 2.
  *
- * Serviço que possibilita ao lojista gerenciar os seus produtos vendidos.
+ * Serviï¿½o que possibilita ao lojista gerenciar os seus produtos vendidos.
  *
  * Created by marcos.tanaka on 02/04/2015.
  */
 public class SellerItems extends CoreAPIImpl<SellerItem> {
 
+    public SellerItems() {
+    }
+
     /**
-     * Construtor que cria uma instância do serviço.
+     * Construtor que cria uma instï¿½ncia do serviï¿½o.
      *
-     * @param host      Endereço principal do serviço.
-     * @param appToken  Token de Aplicação.
+     * @param host      Endereï¿½o principal do serviï¿½o.
+     * @param appToken  Token de Aplicaï¿½ï¿½o.
      * @param authToken
      */
     public SellerItems(Hosts host, AppToken appToken, AuthToken authToken) {
@@ -49,16 +52,16 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * atualiza o status do produto no Marketplace. Se setado para false, o produto é desativado e deixa de ser vendido no Marketplace.
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * atualiza o status do produto no Marketplace. Se setado para false, o produto ï¿½ desativado e deixa de ser vendido no Marketplace.
      *
      * PUT /sellerItems/{skuSellerId}/status
      *
      * @param skuSellerId SKU ID do Lojista.
      * @param active
-     * @param site Site no qual o produto ficará ou não disponível. Consulte a lista completa de sites disponíveis no serviço GET /sites.
-     * @return Confirmação da execução da operação.
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param site Site no qual o produto ficarï¿½ ou nï¿½o disponï¿½vel. Consulte a lista completa de sites disponï¿½veis no serviï¿½o GET /sites.
+     * @return Confirmaï¿½ï¿½o da execuï¿½ï¿½o da operaï¿½ï¿½o.
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public Boolean uptadeStatus(String skuSellerId, Boolean active, String site) throws ServiceException {
         setResource("/sellerItems/" + skuSellerId + "/status");
@@ -77,17 +80,17 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * recupera apenas os produtos do Lojista que estão disponíveis para venda, ou seja, que possuem estoque e preço atualizados e imagem(ns) válida(s).
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * recupera apenas os produtos do Lojista que estï¿½o disponï¿½veis para venda, ou seja, que possuem estoque e preï¿½o atualizados e imagem(ns) vï¿½lida(s).
      *
      * GET /sellerItems/status/selling
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param site Site do qual deseja consultar os produtos. Se o parâmetro não for informado, serão trazidos apenas produtos do Extra. Consulte a lista completa de sites disponíveis no serviço GET /sites.
-     * @return produtos do Lojista que estão disponíveis para venda, ou seja, que possuem estoque e preço atualizados e imagem(ns) válida(s).
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param site Site do qual deseja consultar os produtos. Se o parï¿½metro nï¿½o for informado, serï¿½o trazidos apenas produtos do Extra. Consulte a lista completa de sites disponï¿½veis no serviï¿½o GET /sites.
+     * @return produtos do Lojista que estï¿½o disponï¿½veis para venda, ou seja, que possuem estoque e preï¿½o atualizados e imagem(ns) vï¿½lida(s).
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public List<SellerItem> getAvailableSellerItems(String offset, String limit, String site) throws ServiceException {
         if (Utils.isEmpty(offset) || Utils.isEmpty(limit)) {
@@ -96,7 +99,7 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
 
         setResource("/sellerItems/status/selling");
 
-        // Parâmetros da requisição
+        // Parï¿½metros da requisiï¿½ï¿½o
         MultivaluedMap<String, String> queryParameters = new MultivaluedMapImpl();
         queryParameters.add("_offset", offset);
         queryParameters.add("_limit", limit);
@@ -119,15 +122,15 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * recupera apenas os produtos do Lojista que estão disponíveis para venda, ou seja, que possuem estoque e preço atualizados e imagem(ns) válida(s).
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * recupera apenas os produtos do Lojista que estï¿½o disponï¿½veis para venda, ou seja, que possuem estoque e preï¿½o atualizados e imagem(ns) vï¿½lida(s).
      *
      * GET /sellerItems/{skuSellerId}
      *
      * @param skuSellerId SKU ID do Lojista.
-     * @param site Site do qual deseja consultar o produto. Se o parâmetro não for informado, serão trazidos apenas produtos do Extra. Consulte a lista completa de sites disponíveis no serviço GET /sites.
-     * @return produtos do Lojista que estão disponíveis para venda, ou seja, que possuem estoque e preço atualizados e imagem(ns) válida(s).
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param site Site do qual deseja consultar o produto. Se o parï¿½metro nï¿½o for informado, serï¿½o trazidos apenas produtos do Extra. Consulte a lista completa de sites disponï¿½veis no serviï¿½o GET /sites.
+     * @return produtos do Lojista que estï¿½o disponï¿½veis para venda, ou seja, que possuem estoque e preï¿½o atualizados e imagem(ns) vï¿½lida(s).
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public SellerItem getSellerItemBySkuID(String skuSellerId, String site) throws ServiceException {
         if (!Utils.isEmpty(skuSellerId)) {
@@ -153,28 +156,28 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * recupera todos os produtos que estão associados ao Lojista, mesmo
-     * os que não estão disponíveis para venda.
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * recupera todos os produtos que estï¿½o associados ao Lojista, mesmo
+     * os que nï¿½o estï¿½o disponï¿½veis para venda.
      *
      * GET /sellerItems
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0), ou seja,
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0), ou seja,
      *               para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param site Site do qual deseja consultar os produtos. Se o parâmetro não for informado, serão trazidos apenas produtos do Extra.
-     *             Consulte a lista completa de sites disponíveis no serviço GET /sites.
-     * @param active Indica se o produto está ativo ou não.
-     * @param levelIds Lista de IDs de categorias. Separado por vígulas.
-     * @param title Tílulo de venda do produto.
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param site Site do qual deseja consultar os produtos. Se o parï¿½metro nï¿½o for informado, serï¿½o trazidos apenas produtos do Extra.
+     *             Consulte a lista completa de sites disponï¿½veis no serviï¿½o GET /sites.
+     * @param active Indica se o produto estï¿½ ativo ou nï¿½o.
+     * @param levelIds Lista de IDs de categorias. Separado por vï¿½gulas.
+     * @param title Tï¿½lulo de venda do produto.
      * @param brand Marca do produto.
      * @param skuId SKU ID do produto no Marketplace.
      * @param skuSellerId SKU ID do produto do Lojista.
      * @param quantity Quantidade total do produto.
-     * @param price Preço de venda do produto.
-     * @param crossDockingTime Tempo de preparação/fabricação do produto. Esse tempo é incluído no cálculo de frete.
-     * @return Lista de produtos que estão associados ao Lojista, mesmo os que não estão disponíveis para venda.
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param price Preï¿½o de venda do produto.
+     * @param crossDockingTime Tempo de preparaï¿½ï¿½o/fabricaï¿½ï¿½o do produto. Esse tempo ï¿½ incluï¿½do no cï¿½lculo de frete.
+     * @return Lista de produtos que estï¿½o associados ao Lojista, mesmo os que nï¿½o estï¿½o disponï¿½veis para venda.
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public List<SellerItem> getSellerItems(String offset, String limit, String site, Boolean active, String levelIds, String title, String brand, String skuId, String skuSellerId, Integer quantity, Double price, Integer crossDockingTime) throws ServiceException {
         if (Utils.isEmpty(offset) || Utils.isEmpty(limit)) {
@@ -183,7 +186,7 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
 
         setResource("/sellerItems");
 
-        // Parâmetros da requisição
+        // Parï¿½metros da requisiï¿½ï¿½o
         MultivaluedMapImpl queryParameters = new MultivaluedMapImpl();
         queryParameters.add("_offset", offset);
         queryParameters.add("_limit", limit);
@@ -235,17 +238,17 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * Atualiza o preço "de" e o preço "por" (preço real para venda) do item do Lojista informado.
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * Atualiza o preï¿½o "de" e o preï¿½o "por" (preï¿½o real para venda) do item do Lojista informado.
      *
      * PUT /sellerItems/{skuSellerId}/prices
      *
      * @param skuSellerId SKU ID do Lojista.
-     * @param defaultPrice Preço "de" do produto no Marketplace.
-     * @param offer Preço real de venda. Preço "por" do produto no Marketplace.
-     * @param site Site no qual o produto ficará ou não disponível. Consulte a lista completa de sites disponíveis no serviço GET /sites.
-     * @return Confirmação da execução da operação.
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param defaultPrice Preï¿½o "de" do produto no Marketplace.
+     * @param offer Preï¿½o real de venda. Preï¿½o "por" do produto no Marketplace.
+     * @param site Site no qual o produto ficarï¿½ ou nï¿½o disponï¿½vel. Consulte a lista completa de sites disponï¿½veis no serviï¿½o GET /sites.
+     * @return Confirmaï¿½ï¿½o da execuï¿½ï¿½o da operaï¿½ï¿½o.
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public Boolean uptadePrice(String skuSellerId, Double defaultPrice, Double offer, String site) throws ServiceException {
         setResource("/sellerItems/" + skuSellerId + "/prices");
@@ -265,17 +268,17 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método utilizado para realizar a chamada ao WebService Restful que
-     * atualiza a quantidade disponível para venda do Item do Lojista informado.
+     * Mï¿½todo utilizado para realizar a chamada ao WebService Restful que
+     * atualiza a quantidade disponï¿½vel para venda do Item do Lojista informado.
      *
      * PUT /sellerItems/{skuSellerId}/stock
      *
      * @param skuSellerId SKU ID do Lojista.
-     * @param quantity Quantidade de produtos disponíveis.
-     * @param crossDockingTime Tempo de preparação/fabricação do produto. Esse tempo é incluído no cálculo de frete.
-     * @param warehouse ID do depósito no qual o estoque do produto está sendo considerado. Consulte a lista completa de warehouses disponíveis no serviço GET /warehouses.
-     * @return Confirmação da execução da operação.
-     * @throws ServiceException Exceção lançada caso ocorra algum erro na execução do serviço.
+     * @param quantity Quantidade de produtos disponï¿½veis.
+     * @param crossDockingTime Tempo de preparaï¿½ï¿½o/fabricaï¿½ï¿½o do produto. Esse tempo ï¿½ incluï¿½do no cï¿½lculo de frete.
+     * @param warehouse ID do depï¿½sito no qual o estoque do produto estï¿½ sendo considerado. Consulte a lista completa de warehouses disponï¿½veis no serviï¿½o GET /warehouses.
+     * @return Confirmaï¿½ï¿½o da execuï¿½ï¿½o da operaï¿½ï¿½o.
+     * @throws ServiceException Exceï¿½ï¿½o lanï¿½ada caso ocorra algum erro na execuï¿½ï¿½o do serviï¿½o.
      */
     public Boolean uptadeStock(String skuSellerId, Integer quantity, Integer crossDockingTime , Integer warehouse) throws ServiceException {
         setResource("/sellerItems/" + skuSellerId + "/stock");
@@ -295,11 +298,11 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
-     * Método que recupera do response uma lista de objeto que deverá ser retornado.
+     * Mï¿½todo que recupera do response uma lista de objeto que deverï¿½ ser retornado.
      *
-     * @param response Response da requisição realizada.
+     * @param response Response da requisiï¿½ï¿½o realizada.
      * @return Lista de objetos items do lojista.
-     * @throws IOException Exceção lançada no parse da lista de retorno.
+     * @throws IOException Exceï¿½ï¿½o lanï¿½ada no parse da lista de retorno.
      */
     protected List<SellerItem> getListFromResponse(ClientResponse response) throws IOException {
         List<SellerItem> pojos = new ArrayList<SellerItem>();

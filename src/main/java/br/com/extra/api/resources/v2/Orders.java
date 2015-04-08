@@ -23,11 +23,13 @@ import java.util.List;
  */
 public class Orders extends CoreAPIImpl<Order> {
 
+    public Orders(){}
+
     /**
-     * Construtor que cria uma instância do serviço.
+     * Construtor que cria uma instï¿½ncia do serviï¿½o.
      *
-     * @param host      Endereço principal do serviço.
-     * @param appToken  Token de Aplicação.
+     * @param host      Endereï¿½o principal do serviï¿½o.
+     * @param appToken  Token de Aplicaï¿½ï¿½o.
      * @param authToken
      */
     public Orders(Hosts host, AppToken appToken, AuthToken authToken) {
@@ -73,7 +75,7 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Recupera detalhes de um item específico do pedido.
+     * Recupera detalhes de um item especï¿½fico do pedido.
      *
      * GET /orders/{orderId}/items/{orderItemId}
      *
@@ -104,21 +106,21 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Recupera uma lista de pedidos Novos que estão relacionados com o token do lojista informado.
+     * Recupera uma lista de pedidos Novos que estï¿½o relacionados com o token do lojista informado.
      *
      * GET /orders/status/new
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param purchasedAt Data de compra. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param purchasedAt Data de compra. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                       purchasedAt={data inicial},{data final}
      *                       purchasedAt={data inicial},*
      *                       purchasedAt=*,{data final}
-     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
+     *                       onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
-     * @return lista de pedidos Novos que estão relacionados com o token do lojista informado.
+     * @return lista de pedidos Novos que estï¿½o relacionados com o token do lojista informado.
      * @throws ServiceException
      */
     public List<Order> getNewOrders(Integer offset, Integer limit, String purchasedAt, String customerName, String customerDocumentNumber) throws ServiceException {
@@ -127,21 +129,21 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Recupera uma lista de pedidos Aprovados que estão relacionados com o token do lojista informado.
+     * Recupera uma lista de pedidos Aprovados que estï¿½o relacionados com o token do lojista informado.
      *
      * GET /orders/status/approved
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param purchasedAt Data de compra. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param purchasedAt Data de compra. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                       purchasedAt={data inicial},{data final}
      *                       purchasedAt={data inicial},*
      *                       purchasedAt=*,{data final}
-     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
+     *                       onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
-     * @return lista de pedidos Aprovados que estão relacionados com o token do lojista informado.
+     * @return lista de pedidos Aprovados que estï¿½o relacionados com o token do lojista informado.
      * @throws ServiceException
      */
     public List<Order> getApprovedOrders(String offset, Integer limit, String purchasedAt, String customerName, String customerDocumentNumber) throws ServiceException {
@@ -150,18 +152,18 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Retorna uma lista de pedidos Cancelados que estão relacionados com o token do lojista informado.
+     * Retorna uma lista de pedidos Cancelados que estï¿½o relacionados com o token do lojista informado.
      *
      * GET /orders/status/canceled
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param canceledAt Data de cancelemento. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param canceledAt Data de cancelemento. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                       canceledAt={data inicial},{data final}
      *                       canceledAt={data inicial},*
      *                       canceledAt=*,{data final}
-     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
+     *                       onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas.
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return
@@ -173,18 +175,18 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Recupera uma lista de pedidos Enviados que estão relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
+     * Recupera uma lista de pedidos Enviados que estï¿½o relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
      *
      * GET /orders/status/sent
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                   sentAt={data inicial},{data final}
      *                   sentAt={data inicial},*
      *                   sentAt=*,{data final}
-     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     *                   onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return
@@ -196,18 +198,18 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Retorna uma lista de pedidos Parcialmente Enviados que estão relacionados com o token do lojista informado.
+     * Retorna uma lista de pedidos Parcialmente Enviados que estï¿½o relacionados com o token do lojista informado.
      *
      * GET /orders/status/partiallySent
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                   sentAt={data inicial},{data final}
      *                   sentAt={data inicial},*
      *                   sentAt=*,{data final}
-     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     *                   onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return
@@ -219,18 +221,18 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Retorna uma lista de pedidos Parcialmente Entregues que estão relacionados com o token do lojista informado.
+     * Retorna uma lista de pedidos Parcialmente Entregues que estï¿½o relacionados com o token do lojista informado.
      *
      * GET /orders/status/partiallyDelivered
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param sentAt Data de envio. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                   sentAt={data inicial},{data final}
      *                   sentAt={data inicial},*
      *                   sentAt=*,{data final}
-     *                   onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     *                   onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return
@@ -242,18 +244,18 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Recupera uma lista de pedidos Entregues que estão relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
+     * Recupera uma lista de pedidos Entregues que estï¿½o relacionados com o token do lojista informado. Este estado representa os pedidos cujos itens foram todos entregues.
      *
      * GET /orders/status/delivered
      *
-     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0),
+     * @param offset Parï¿½metro utilizado para indicar a posiï¿½ï¿½o inicial da consulta. O registro inicial tem ï¿½ndice zero (0),
      *               ou seja, para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
-     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
-     * @param deliveredAt Data de entrega. Esse campo aceita um range de datas separados por vírgula, e os formatos aceitos para o campo são os seguintes:
+     * @param limit Parï¿½metro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @param deliveredAt Data de entrega. Esse campo aceita um range de datas separados por vï¿½rgula, e os formatos aceitos para o campo sï¿½o os seguintes:
      *                       deliveredAt={data inicial},{data final}
      *                       deliveredAt={data inicial},*
      *                       deliveredAt=*,{data final}
-     *                       onde, o * é obrigatório e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
+     *                       onde, o * ï¿½ obrigatï¿½rio e indica a que todas as datas antes ou depois da outra data passada devem ser consideradas
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
      * @return
@@ -269,7 +271,7 @@ public class Orders extends CoreAPIImpl<Order> {
     // *****************************************************************************************************************
 
     /**
-     * Registra uma nova operação de tracking de Envio para os itens do pedido.
+     * Registra uma nova operaï¿½ï¿½o de tracking de Envio para os itens do pedido.
      *
      * POST /orders/{orderId}/trackings/sent
      *
@@ -291,7 +293,7 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Registra uma nova operação de tracking de Entrega para os itens do pedido.
+     * Registra uma nova operaï¿½ï¿½o de tracking de Entrega para os itens do pedido.
      *
      * POST /orders/{orderId}/trackings/delivered
      *
@@ -313,7 +315,7 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Operação utilizada para confirmar o cancelamento de um item de um pedido que foi aberto pelo cliente (via protocolo) ou cancelamento acionado pelo lojista.
+     * Operaï¿½ï¿½o utilizada para confirmar o cancelamento de um item de um pedido que foi aberto pelo cliente (via protocolo) ou cancelamento acionado pelo lojista.
      *
      * POST /orders/{orderId}/trackings/cancel
      *
@@ -335,7 +337,7 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Operação utilizada para confirmar a troca de um item de um pedido que foi aberto pelo cliente (via protocolo).
+     * Operaï¿½ï¿½o utilizada para confirmar a troca de um item de um pedido que foi aberto pelo cliente (via protocolo).
      *
      * POST /orders/{orderId}/trackings/exchange
      *
@@ -357,7 +359,7 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Operação utilizada para confirmação de devolução (reembolso) de item do pedido através de protocolo aberto pelo cliente.
+     * Operaï¿½ï¿½o utilizada para confirmaï¿½ï¿½o de devoluï¿½ï¿½o (reembolso) de item do pedido atravï¿½s de protocolo aberto pelo cliente.
      *
      * POST /orders/{orderId}/trackings/return
      *
@@ -379,11 +381,11 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Método utilizado para realizar as consultas de pedidos.
+     * Mï¿½todo utilizado para realizar as consultas de pedidos.
      *
-     * @param offset Parâmetro utilizado para limitar a quantidade de registros trazidos por página.
-     * @param limit Parâmetro utilizado para limitar a quantidade de registros trazidos pela operação.
-     * @param dateName Nome do parâmetro Data para filtrar.
+     * @param offset Parï¿½metro utilizado para limitar a quantidade de registros trazidos por pï¿½gina.
+     * @param limit Parï¿½metro utilizado para limitar a quantidade de registros trazidos pela operaï¿½ï¿½o.
+     * @param dateName Nome do parï¿½metro Data para filtrar.
      * @param date Data para filtrar.
      * @param customerName Nome do Cliente.
      * @param customerDocumentNumber Documento do Cliente.
@@ -416,11 +418,11 @@ public class Orders extends CoreAPIImpl<Order> {
     }
 
     /**
-     * Método que recupera do response uma lista de objeto que deverá ser retornado.
+     * Mï¿½todo que recupera do response uma lista de objeto que deverï¿½ ser retornado.
      *
-     * @param response Response da requisição realizada.
+     * @param response Response da requisiï¿½ï¿½o realizada.
      * @return Lista de objetos pedidos.
-     * @throws IOException Exceção lançada no parse da lista de retorno.
+     * @throws IOException Exceï¿½ï¿½o lanï¿½ada no parse da lista de retorno.
      */
     protected List<Order> getListFromResponse(ClientResponse response) throws IOException {
         List<Order> pojos = new ArrayList<Order>();

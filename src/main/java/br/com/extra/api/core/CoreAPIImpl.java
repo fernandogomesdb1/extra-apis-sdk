@@ -82,6 +82,9 @@ public abstract class CoreAPIImpl<T extends Pojos> {
 	 */
 	private String mediaType;
 
+    protected CoreAPIImpl() {
+    }
+
 	/**
 	 * Construtor que cria uma instância do serviço.
 	 * 

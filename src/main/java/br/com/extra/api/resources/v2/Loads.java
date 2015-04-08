@@ -23,19 +23,22 @@ import java.util.Map;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * Implementação do Serviço Restful /loads na versão 2.
+ * Implementaï¿½ï¿½o do Serviï¿½o Restful /loads na versï¿½o 2.
  *
- * Operações de cargas.
+ * Operaï¿½ï¿½es de cargas.
  *
  * Created by marcos.tanaka on 06/04/2015.
  */
 public class Loads extends CoreAPIImpl<Product> {
 
+    public Loads(){
+    }
+
     /**
-     * Construtor que cria uma instância do serviço.
+     * Construtor que cria uma instï¿½ncia do serviï¿½o.
      *
-     * @param host      Endereço principal do serviço.
-     * @param appToken  Token de Aplicação.
+     * @param host      Endereï¿½o principal do serviï¿½o.
+     * @param appToken  Token de Aplicaï¿½ï¿½o.
      * @param authToken
      */
     public Loads(Hosts host, AppToken appToken, AuthToken authToken) {
@@ -48,7 +51,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * POST /loads/products Operação utilizada para enviar uma nova carga de produtos. (assíncrono)
+     * POST /loads/products Operaï¿½ï¿½o utilizada para enviar uma nova carga de produtos. (assï¿½ncrono)
      */
     public Boolean loadProducts(ProductLoad products) throws ServiceException {
         setResource("/loads/products");
@@ -74,15 +77,19 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/products Operação utilizada para consultar o status dos produtos enviados
+     * GET /loads/products Operaï¿½ï¿½o utilizada para consultar o status dos produtos enviados
      */
-    public ProductsStatus getLoadedProductsStatus(String createdAt, String status, String offset, Integer limit) throws ServiceException {
+    public ProductsStatus getLoadedProductsStatus(String createdAt, String status, Integer offset, Integer limit) throws ServiceException {
         setResource("/loads/products");
         MultivaluedMap<String, String> queryParameters = new MultivaluedMapImpl();
-        queryParameters.add("_offset", offset);
+        queryParameters.add("_offset", offset.toString());
         queryParameters.add("_limit", limit.toString());
-        queryParameters.add("createdAt", createdAt);
-        queryParameters.add("status", status);
+        if (createdAt != null) {
+            queryParameters.add("createdAt", createdAt);
+        }
+        if (status != null) {
+            queryParameters.add("status", status);
+        }
 
         ClientResponse response = super.setQueryParams(queryParameters).get();
 
@@ -97,8 +104,12 @@ public class Loads extends CoreAPIImpl<Product> {
         }
     }
 
+    public ProductsStatus getPendingLoadedProducts() throws ServiceException {
+        return getLoadedProductsStatus(null, "PENDING", 0, 100);
+    }
+
     /**
-     * GET /loads/products/{skuSellerId} Operação para consultar os detalhes dos produtos
+     * GET /loads/products/{skuSellerId} Operaï¿½ï¿½o para consultar os detalhes dos produtos
      */
     public ProductsDetail getProductsDetail(String skuSellerId) throws ServiceDataManipulationException {
         setResource("/loads/products/" + skuSellerId);
@@ -118,7 +129,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * PUT /loads/products/{skuSellerId} Operação para alterar um produto enviado na carga
+     * PUT /loads/products/{skuSellerId} Operaï¿½ï¿½o para alterar um produto enviado na carga
      */
     public Boolean updateLoadedProduct(String skuSellerId, Product product) throws ServiceException {
         setResource("/loads/products/" + skuSellerId);
@@ -135,7 +146,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/sellerItems/status Operação para consulta de status da atualização massiva de status
+     * GET /loads/sellerItems/status Operaï¿½ï¿½o para consulta de status da atualizaï¿½ï¿½o massiva de status
      */
     public UpdatedStatusSituation getUpdatedStatusSituation(Integer offset, Integer limit, String skuSellerId) throws ServiceException {
         setResource("/loads/sellerItems/status");
@@ -158,7 +169,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * PUT /loads/sellerItems/status Operação para atualização de ativação/desativação massiva de produtos
+     * PUT /loads/sellerItems/status Operaï¿½ï¿½o para atualizaï¿½ï¿½o de ativaï¿½ï¿½o/desativaï¿½ï¿½o massiva de produtos
      */
     public Boolean enableDisableProducts(String skuSellerId, LoadsSellerItemsStatus status) throws ServiceException {
         setResource("/loads/sellerItems/status" + skuSellerId);
@@ -175,7 +186,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/sellerItems/prices Operação para consulta de status da atualização massiva de preços
+     * GET /loads/sellerItems/prices Operaï¿½ï¿½o para consulta de status da atualizaï¿½ï¿½o massiva de preï¿½os
      */
     public UpdatedStatusSituation getUpdatedPricesSituation(Integer offset, Integer limit, String skuSellerId) throws ServiceException {
         setResource("/loads/sellerItems/prices");
@@ -199,7 +210,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * PUT /loads/sellerItems/prices Operação para atualização de preço de produtos em massa
+     * PUT /loads/sellerItems/prices Operaï¿½ï¿½o para atualizaï¿½ï¿½o de preï¿½o de produtos em massa
      */
     public Boolean updateProductsPrice(String skuSellerId, LoadsSellerItemsPrices prices) throws ServiceException {
         setResource("/loads/sellerItems/prices" + skuSellerId);
@@ -216,7 +227,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/sellerItems/stocks Operação para consulta de status da atualização massiva de estoque
+     * GET /loads/sellerItems/stocks Operaï¿½ï¿½o para consulta de status da atualizaï¿½ï¿½o massiva de estoque
      */
     public UpdatedStockSituation getUpdatedStockSituation(Integer offset, Integer limit, String skuSellerId) throws ServiceException {
         setResource("/loads/sellerItems/stocks");
@@ -240,7 +251,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * PUT /loads/sellerItems/stocks Operação para atualização de estoque massivo
+     * PUT /loads/sellerItems/stocks Operaï¿½ï¿½o para atualizaï¿½ï¿½o de estoque massivo
      */
     public Boolean updateStock(String skuSellerId, LoadsSellerItemsStocks stock) throws ServiceException {
         setResource("/loads/sellerItems/stocks" + skuSellerId);
@@ -257,7 +268,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * POST /loads/orders/trackings/sent Operação responsável por criar trackings massivos
+     * POST /loads/orders/trackings/sent Operaï¿½ï¿½o responsï¿½vel por criar trackings massivos
      */
     public Boolean createSentTrack(ProductLoad products) throws ServiceException {
         setResource("/loads/orders/trackings/sent");
@@ -283,7 +294,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/orders/trackings/sent Operação utilizada para consultar o status da atualização massiva de tracking
+     * GET /loads/orders/trackings/sent Operaï¿½ï¿½o utilizada para consultar o status da atualizaï¿½ï¿½o massiva de tracking
      */
     public UpdatedSentTrackingSituation getUpdatedSentTrackingSituation(String offset, Integer limit) throws ServiceException {
         setResource("/loads/orders/trackings/sent");
@@ -306,7 +317,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * POST /loads/orders/trackings/delivered Operação responsável por criar trackings massivos
+     * POST /loads/orders/trackings/delivered Operaï¿½ï¿½o responsï¿½vel por criar trackings massivos
      */
     public Boolean createDeliveredTrack(ProductLoad products) throws ServiceException {
         setResource("/loads/orders/trackings/delivered");
@@ -332,7 +343,7 @@ public class Loads extends CoreAPIImpl<Product> {
     }
 
     /**
-     * GET /loads/orders/trackings/delivered Operação utilizada para consultar o status da atualização massiva de tracking
+     * GET /loads/orders/trackings/delivered Operaï¿½ï¿½o utilizada para consultar o status da atualizaï¿½ï¿½o massiva de tracking
      */
     public UpdatedSentTrackingSituation getUpdatedDeliveredTrackingSituation(String offset, Integer limit) throws ServiceException {
         setResource("/loads/orders/trackings/delivered");
@@ -356,22 +367,22 @@ public class Loads extends CoreAPIImpl<Product> {
 
     private byte[] getBytesFromFile(File file) throws FileNotFoundException, IOException {
         byte[] bytesToCompress;
-        // Criação do InputStream do Arquivo
+        // Criaï¿½ï¿½o do InputStream do Arquivo
         FileInputStream stream = new FileInputStream(file);
         byte[] buffer = new byte[8192];
         int bytesRead;
-        // Conversão do arquivo em um Array de Bytes para ser compactado via GZip
+        // Conversï¿½o do arquivo em um Array de Bytes para ser compactado via GZip
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         while ((bytesRead = stream.read(buffer)) != -1) {
             output.write(buffer, 0, bytesRead);
         }
         bytesToCompress = output.toByteArray();
-        // Tratamento para compactar a String que contém o JSON
+        // Tratamento para compactar a String que contï¿½m o JSON
         return bytesToCompress;
     }
 
     private byte[] compress(ProductLoad products) throws IOException, ServiceDataManipulationException {
-        // Array de bytes que será enviado para o serviço
+        // Array de bytes que serï¿½ enviado para o serviï¿½o
         byte[] compressedByteArray = null;
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -383,18 +394,18 @@ public class Loads extends CoreAPIImpl<Product> {
                 bytesToCompress = getBytesFromFile(products.getJsonFile());
             } else if (!Utils.isEmpty(products.getProductsJson())) {
                 bytesToCompress = products.getProductsJson().getBytes();
-                // Lançamento de Exceção caso não seja enviado nem o arquivo nem a String.
+                // Lanï¿½amento de Exceï¿½ï¿½o caso nï¿½o seja enviado nem o arquivo nem a String.
             } else {
                 throw new ServiceDataManipulationException("Error while trying gziping content. There is no content to be compressed.");
             }
 
-            // Compactação do Array de Bytes
+            // Compactaï¿½ï¿½o do Array de Bytes
             gzos.write(bytesToCompress);
 
             gzos.finish();
             gzos.close();
 
-            // Recuperação do Array de Bytes
+            // Recuperaï¿½ï¿½o do Array de Bytes
             compressedByteArray = baos.toByteArray();
             baos.close();
 
