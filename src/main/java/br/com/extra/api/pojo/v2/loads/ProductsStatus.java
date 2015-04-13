@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.loads;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import br.com.extra.api.pojo.MetadataItem;
 
 import java.io.Serializable;
 import java.util.List;
