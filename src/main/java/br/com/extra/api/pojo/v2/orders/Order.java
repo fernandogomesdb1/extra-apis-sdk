@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
 import br.com.extra.api.pojo.Pojos;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.List;
  *
  * Created by marcos.tanaka on 02/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order extends Pojos {
 
     private static final long serialVersionUID = -3122967363109669416L;

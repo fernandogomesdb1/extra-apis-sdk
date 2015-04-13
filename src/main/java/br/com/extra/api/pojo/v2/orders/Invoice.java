@@ -1,5 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
  *
  * Created by marcos.tanaka on 02/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoice implements Serializable {
 
     private static final long serialVersionUID = 893851738922339125L;

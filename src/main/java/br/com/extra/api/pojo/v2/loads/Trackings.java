@@ -2,6 +2,7 @@ package br.com.extra.api.pojo.v2.loads;
 
 import br.com.extra.api.pojo.v2.orders.Carrier;
 import br.com.extra.api.pojo.v2.orders.Invoice;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by marcos.tanaka on 06/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Trackings implements Serializable {
 
     private static final long serialVersionUID = 7832889795025352707L;

@@ -1,9 +1,12 @@
 package br.com.extra.api.pojo.v2.orders;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TrackingCancel implements Serializable {
 
     private static final long serialVersionUID = -6448914189276282624L;

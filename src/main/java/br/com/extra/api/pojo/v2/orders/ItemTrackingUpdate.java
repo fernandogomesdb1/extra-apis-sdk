@@ -1,5 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  *
  * Created by marcos.tanaka on 06/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ItemTrackingUpdate implements Serializable {
 
     private static final long serialVersionUID = 9102595632000607237L;

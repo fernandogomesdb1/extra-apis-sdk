@@ -1,10 +1,13 @@
 package br.com.extra.api.pojo.v2.loads;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
  * Created by marcos.tanaka on 06/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Error implements Serializable {
 
     private static final long serialVersionUID = 8688333270253332179L;

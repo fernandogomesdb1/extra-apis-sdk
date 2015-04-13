@@ -1,5 +1,7 @@
 package br.com.extra.api.pojo.v2.loads;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -8,6 +10,7 @@ import java.math.BigDecimal;
  *
  * Created by marcos.tanaka on 06/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Price implements Serializable {
 
     private static final long serialVersionUID = 5469778496695456145L;

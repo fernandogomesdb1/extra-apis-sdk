@@ -56,18 +56,18 @@ public class Loads extends CoreAPIImpl<Product> {
     public Boolean loadProducts(ProductLoad products) throws ServiceException {
         setResource("/loads/products");
 
-        byte[] compressedByteArray;
-        try {
-            if (!Utils.isEmpty(products.getGzFile())) {
-                compressedByteArray = getBytesFromFile(products.getGzFile());
-            } else {
-                compressedByteArray = compress(products);
-            }
-        } catch (IOException e1) {
-            throw new ServiceException("Error while trying compact content.", e1);
-        }
+//        byte[] compressedByteArray;
+//        try {
+//            if (!Utils.isEmpty(products.getGzFile())) {
+//                compressedByteArray = getBytesFromFile(products.getGzFile());
+//            } else {
+//                compressedByteArray = compress(products);
+//            }
+//        } catch (IOException e1) {
+//            throw new ServiceException("Error while trying compact content.", e1);
+//        }
 
-        ClientResponse response = setMediaType("application/json").post(compressedByteArray);
+        ClientResponse response = setMediaType("application/json").post(products.getProductsJson());
 
         if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
             throw errorHandler(response);
@@ -273,18 +273,18 @@ public class Loads extends CoreAPIImpl<Product> {
     public Boolean createSentTrack(ProductLoad products) throws ServiceException {
         setResource("/loads/orders/trackings/sent");
 
-        byte[] compressedByteArray;
-        try {
-            if (!Utils.isEmpty(products.getGzFile())) {
-                compressedByteArray = getBytesFromFile(products.getGzFile());
-            } else {
-                compressedByteArray = compress(products);
-            }
-        } catch (IOException e1) {
-            throw new ServiceException("Error while trying compact content.", e1);
-        }
+//        byte[] compressedByteArray;
+//        try {
+//            if (!Utils.isEmpty(products.getGzFile())) {
+//                compressedByteArray = getBytesFromFile(products.getGzFile());
+//            } else {
+//                compressedByteArray = compress(products);
+//            }
+//        } catch (IOException e1) {
+//            throw new ServiceException("Error while trying compact content.", e1);
+//        }
 
-        ClientResponse response = setMediaType("application/json").post(compressedByteArray);
+        ClientResponse response = setMediaType("application/json").post(products.getProductsJson());
 
         if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
             throw errorHandler(response);
@@ -322,18 +322,18 @@ public class Loads extends CoreAPIImpl<Product> {
     public Boolean createDeliveredTrack(ProductLoad products) throws ServiceException {
         setResource("/loads/orders/trackings/delivered");
 
-        byte[] compressedByteArray;
-        try {
-            if (!Utils.isEmpty(products.getGzFile())) {
-                compressedByteArray = getBytesFromFile(products.getGzFile());
-            } else {
-                compressedByteArray = compress(products);
-            }
-        } catch (IOException e1) {
-            throw new ServiceException("Error while trying compact content.", e1);
-        }
+//        byte[] compressedByteArray;
+//        try {
+//            if (!Utils.isEmpty(products.getGzFile())) {
+//                compressedByteArray = getBytesFromFile(products.getGzFile());
+//            } else {
+//                compressedByteArray = compress(products);
+//            }
+//        } catch (IOException e1) {
+//            throw new ServiceException("Error while trying compact content.", e1);
+//        }
 
-        ClientResponse response = setMediaType("application/json").post(compressedByteArray);
+        ClientResponse response = setMediaType("application/json").post(products.getProductsJson());
 
         if (response.getStatus() != ClientResponse.Status.CREATED.getStatusCode()) {
             throw errorHandler(response);
@@ -365,54 +365,54 @@ public class Loads extends CoreAPIImpl<Product> {
         }
     }
 
-    private byte[] getBytesFromFile(File file) throws FileNotFoundException, IOException {
-        byte[] bytesToCompress;
-        // Cria��o do InputStream do Arquivo
-        FileInputStream stream = new FileInputStream(file);
-        byte[] buffer = new byte[8192];
-        int bytesRead;
-        // Convers�o do arquivo em um Array de Bytes para ser compactado via GZip
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        while ((bytesRead = stream.read(buffer)) != -1) {
-            output.write(buffer, 0, bytesRead);
-        }
-        bytesToCompress = output.toByteArray();
-        // Tratamento para compactar a String que cont�m o JSON
-        return bytesToCompress;
-    }
+//    private byte[] getBytesFromFile(File file) throws FileNotFoundException, IOException {
+//        byte[] bytesToCompress;
+//        // Cria��o do InputStream do Arquivo
+//        FileInputStream stream = new FileInputStream(file);
+//        byte[] buffer = new byte[8192];
+//        int bytesRead;
+//        // Convers�o do arquivo em um Array de Bytes para ser compactado via GZip
+//        ByteArrayOutputStream output = new ByteArrayOutputStream();
+//        while ((bytesRead = stream.read(buffer)) != -1) {
+//            output.write(buffer, 0, bytesRead);
+//        }
+//        bytesToCompress = output.toByteArray();
+//        // Tratamento para compactar a String que cont�m o JSON
+//        return bytesToCompress;
+//    }
 
-    private byte[] compress(ProductLoad products) throws IOException, ServiceDataManipulationException {
-        // Array de bytes que ser� enviado para o servi�o
-        byte[] compressedByteArray = null;
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            GZIPOutputStream gzos = new GZIPOutputStream(baos);
-            byte[] bytesToCompress = null;
-
-            // Tratamento para compactar o arquivo JSON
-            if (!Utils.isEmpty(products.getJsonFile())) {
-                bytesToCompress = getBytesFromFile(products.getJsonFile());
-            } else if (!Utils.isEmpty(products.getProductsJson())) {
-                bytesToCompress = products.getProductsJson().getBytes();
-                // Lan�amento de Exce��o caso n�o seja enviado nem o arquivo nem a String.
-            } else {
-                throw new ServiceDataManipulationException("Error while trying gziping content. There is no content to be compressed.");
-            }
-
-            // Compacta��o do Array de Bytes
-            gzos.write(bytesToCompress);
-
-            gzos.finish();
-            gzos.close();
-
-            // Recupera��o do Array de Bytes
-            compressedByteArray = baos.toByteArray();
-            baos.close();
-
-        } catch (IOException e) {
-            throw e;
-        }
-        return compressedByteArray;
-    }
+//    private byte[] compress(ProductLoad products) throws IOException, ServiceDataManipulationException {
+//        // Array de bytes que ser� enviado para o servi�o
+//        byte[] compressedByteArray = null;
+//        try {
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            GZIPOutputStream gzos = new GZIPOutputStream(baos);
+//            byte[] bytesToCompress = null;
+//
+//            // Tratamento para compactar o arquivo JSON
+//            if (!Utils.isEmpty(products.getJsonFile())) {
+//                bytesToCompress = getBytesFromFile(products.getJsonFile());
+//            } else if (!Utils.isEmpty(products.getProductsJson())) {
+//                bytesToCompress = products.getProductsJson().getBytes();
+//                // Lan�amento de Exce��o caso n�o seja enviado nem o arquivo nem a String.
+//            } else {
+//                throw new ServiceDataManipulationException("Error while trying gziping content. There is no content to be compressed.");
+//            }
+//
+//            // Compacta��o do Array de Bytes
+//            gzos.write(bytesToCompress);
+//
+//            gzos.finish();
+//            gzos.close();
+//
+//            // Recupera��o do Array de Bytes
+//            compressedByteArray = baos.toByteArray();
+//            baos.close();
+//
+//        } catch (IOException e) {
+//            throw e;
+//        }
+//        return compressedByteArray;
+//    }
 
 }

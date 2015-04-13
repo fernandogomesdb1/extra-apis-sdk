@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.loads;
 
 import br.com.extra.api.pojo.v2.sellerItems.Link;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
 /**
  * Created by marcos.tanaka on 07/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Sku implements Serializable {
 
     private static final long serialVersionUID = -6261646584878065888L;

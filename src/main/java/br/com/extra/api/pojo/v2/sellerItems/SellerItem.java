@@ -1,6 +1,7 @@
 package br.com.extra.api.pojo.v2.sellerItems;
 
 import br.com.extra.api.pojo.Pojos;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * Created by marcos.tanaka on 01/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SellerItem extends Pojos {
 
     private static final long serialVersionUID = -5336676250161957930L;

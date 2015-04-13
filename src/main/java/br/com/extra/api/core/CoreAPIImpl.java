@@ -322,17 +322,17 @@ public abstract class CoreAPIImpl<T extends Pojos> {
 
 		WebResource webResource = build();
 
-		if (!(params instanceof byte[])) {
-			// Criação do objeto JSON com os parâmetros quando for enviado um
-			// Mapa
-			try {
-				requestBody = new ObjectMapper().writeValueAsString(params);
-			} catch (IOException e) {
-				throw new ServiceDataManipulationException(e);
-			}
-		} else {
+//		if (!(params instanceof byte[])) {
+//			// Criação do objeto JSON com os parâmetros quando for enviado um
+//			// Mapa
+//			try {
+//				requestBody = new ObjectMapper().writeValueAsString(params);
+//			} catch (IOException e) {
+//				throw new ServiceDataManipulationException(e);
+//			}
+//		} else {
 			requestBody = params;
-		}
+//		}
 		if (logger.isDebugEnabled()) {
 			logger.debug(webResource + ". nova-app-token: " + this.appToken
 					+ ", nova-auth-token: " + this.authToken);

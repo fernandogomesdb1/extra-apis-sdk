@@ -4,12 +4,14 @@ import br.com.extra.api.pojo.Pojos;
 import br.com.extra.api.pojo.v2.sellerItems.Attributes;
 import br.com.extra.api.pojo.v2.sellerItems.Dimensions;
 import br.com.extra.api.pojo.v2.sellerItems.GiftWrap;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.util.List;
 
 /**
  * Created by marcos.tanaka on 06/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product extends Pojos {
 
     private static final long serialVersionUID = -37333069095800520L;

@@ -1,9 +1,11 @@
 package br.com.extra.api.pojo.v2.loads;
 
 import br.com.extra.api.pojo.Pojos;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.File;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductLoad extends Pojos {
 
 	private static final long serialVersionUID = 7745159119155280847L;

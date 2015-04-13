@@ -1,5 +1,7 @@
 package br.com.extra.api.pojo.v2.orders;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
  *
  * Created by marcos.tanaka on 02/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = -6581204424547716065L;
