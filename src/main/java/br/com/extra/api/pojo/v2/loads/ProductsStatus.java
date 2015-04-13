@@ -14,7 +14,7 @@ public class ProductsStatus implements Serializable {
 
     private static final long serialVersionUID = -4329778734473179513L;
     private List<Sku> skus;
-    private Object metadata;
+    private List<MetadataItem> metadata;
 
     public List<Sku> getSkus() {
         return skus;
@@ -24,11 +24,11 @@ public class ProductsStatus implements Serializable {
         this.skus = skus;
     }
 
-    public Object getMetadata() {
+    public List<MetadataItem> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Object metadata) {
+    public void setMetadata(List<MetadataItem> metadata) {
         this.metadata = metadata;
     }
 }

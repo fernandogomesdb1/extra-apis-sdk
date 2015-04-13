@@ -1,10 +1,13 @@
 package br.com.extra.api.pojo;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
  * Created by tiago.bono on 08/04/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MetadataItem implements Serializable {
 
     private static final long serialVersionUID = -6261646584878065888L;
