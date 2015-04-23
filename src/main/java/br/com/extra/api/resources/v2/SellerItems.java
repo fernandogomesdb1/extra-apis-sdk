@@ -7,7 +7,7 @@ import br.com.extra.api.core.Hosts;
 import br.com.extra.api.core.exception.ServiceDataManipulationException;
 import br.com.extra.api.core.exception.ServiceException;
 import br.com.extra.api.pojo.v2.sellerItems.SellerItem;
-import br.com.extra.api.pojo.v2.sellerItems.Stock;
+import br.com.extra.api.pojo.v2.sellerItems.SellerItemResponse;
 import br.com.extra.api.utils.Utils;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -238,6 +238,43 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
     }
 
     /**
+     * Executa o GET /sellerItems, porém aqui apenas os parâmetros offset e limit são passados.
+     *
+     * @param offset Parâmetro utilizado para indicar a posição inicial da consulta. O registro inicial tem índice zero (0), ou seja,
+     *               para trazer os 10 primeiros registros, informa 0 para _offset e 10 para _limit.
+     * @param limit Parâmetro utilizado para indicar a quantidade de registros que deve ser trazido na consulta.
+     * @return Lista de produtos que estão associados ao Lojista, mesmo os que não estão disponíveis para venda.
+     * @throws ServiceException
+     */
+    public List<SellerItem> getSellerItems(String offset, String limit) throws ServiceException {
+        if (Utils.isEmpty(offset) || Utils.isEmpty(limit)) {
+            throw new ServiceDataManipulationException("Parameters offset, limit are mandatory.");
+        }
+
+        setResource("/sellerItems");
+
+        MultivaluedMapImpl queryParameters = new MultivaluedMapImpl();
+        queryParameters.add("_offset", offset);
+        queryParameters.add("_limit", limit);
+
+        ClientResponse response = super.setQueryParams(queryParameters).get();
+
+        List<SellerItem> sellerItems = new ArrayList<SellerItem>();
+
+        if (response.getStatus() == ClientResponse.Status.OK.getStatusCode()) {
+            try {
+                sellerItems = getListFromResponse(response);
+            } catch (IOException e) {
+                throw new ServiceDataManipulationException("Error handling response. ", e);
+            }
+        } else {
+            throw errorHandler(response);
+        }
+
+        return sellerItems;
+    }
+
+    /**
      * M�todo utilizado para realizar a chamada ao WebService Restful que
      * Atualiza o pre�o "de" e o pre�o "por" (pre�o real para venda) do item do Lojista informado.
      *
@@ -305,15 +342,12 @@ public class SellerItems extends CoreAPIImpl<SellerItem> {
      * @throws IOException Exce��o lan�ada no parse da lista de retorno.
      */
     protected List<SellerItem> getListFromResponse(ClientResponse response) throws IOException {
-        List<SellerItem> pojos = new ArrayList<SellerItem>();
+        SellerItemResponse pojos;
         try {
-            pojos = new ObjectMapper().readValue(
-                    response.getEntityInputStream(),
-                    new TypeReference<List<SellerItem>>() {
-                    });
+            pojos = new ObjectMapper().readValue(response.getEntityInputStream(), new TypeReference<SellerItemResponse>() {});
         } catch (IOException e) {
             throw e;
         }
-        return pojos;
+        return pojos.getSellerItemList();
     }
 }
